@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Layout</title>
     <style>
+          @font-face {
+            font-family: 'Jersey M54';
+            src: url('./fonts/jersey-m54.ttf') format('truetype');
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Jersey M54', Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -43,6 +47,9 @@
             to {
                 box-shadow: 0 4px 30px rgba(0, 0, 255, 0.8);
             }
+        }
+                h1, h2 {
+            font-family: 'Jersey M54', Arial, sans-serif;
         }
 
         .container::before {
