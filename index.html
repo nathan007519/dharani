@@ -16,19 +16,24 @@
             background: linear-gradient(135deg, #03045e, #0077b6);
             overflow: hidden;
             position: relative;
+            margin-left: 50px;
+            margin-right: 50px;
         }
 
         .container {
-            width: 300px;
+            width: 90%;
+            max-width: 350px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0, 0, 255, 0.5);
             padding: 20px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px) saturate(180%);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             position: relative;
             animation: pulseGlow 3s infinite alternate;
+
+        
         }
 
         @keyframes pulseGlow {
@@ -92,6 +97,7 @@
             margin-bottom: 20px;
         }
 
+
         .profile-img {
             width: 60px;
             height: 60px;
@@ -120,6 +126,10 @@
         .card:hover {
             background: rgba(255, 255, 255, 0.5);
             transform: translateY(-5px);
+        }
+        .card:hover .hidden-list {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
         }
 
         .skill-item {
@@ -219,16 +229,11 @@
         </script>
     </div>
     <div class="max-w-2xl mx-auto container fade-in">
-        <div class="flex items-center mb-6">
-            <div class="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 profile-img">
-                <img src="./dharani.jpg" alt="Profile picture placeholder" class="w-full h-full object-cover profile-img"/>
-            </div>
-            <div class="ml-4">
-                <h1 class="text-xl font-semibold">Dharani Karuppu</h1>
-                <p class="text-white-600"><i>"When you do something for someone else, don’t expect anything in return. That way, you will never be disappointed."</i></p>
-            </div>
+        <div class="text-center">
+            <img src="./dharani.jpg" alt="Profile Picture" class="profile-img">
+            <h1 class="text-xl font-semibold text-white">Dharani Karuppu</h1>
+            <p class="text-white"><i>"When you do something for someone else, don’t expect anything in return. That way, you will never be disappointed."</i></p>
         </div>
-        
         <div class="space-y-4">
             <div class="border-l-4 border-green-500 p-4 rounded-lg card">
                 <h2 class="font-semibold">Experience</h2>
@@ -279,9 +284,9 @@
           const image = document.getElementById("certificate-image");
           const images = {
             cert1: "./Introduction to agile methodology.png",
-            cert2: "./introductiontocybersecurity.png",
+            cert2: "./CyberSecurity.png",
             cert3: "./Basic of Python.png",
-            cert4: "./ThreatModelling.png",
+            cert4: "./Threatmodelling.png",
             cert5: "./IGA.png",
           };
           image.src = images[cert];
