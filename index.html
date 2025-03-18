@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #03045e, #0077b6);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 255, 0.5);
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            from {
+                box-shadow: 0 4px 20px rgba(0, 0, 255, 0.5);
+            }
+            to {
+                box-shadow: 0 4px 30px rgba(0, 0, 255, 0.8);
+            }
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(0, 0, 255, 0.3) 0%, rgba(0, 0, 255, 0) 70%);
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .dust-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: floatParticles 5s infinite ease-in-out;
+        }
+
+        @keyframes floatParticles {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-20px) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-40px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin: 0 auto 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.3);
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.3s;
+            position: relative;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .skill-item {
+            transition: transform 0.3s ease, color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            transform: translateX(8px);
+            color: #48bb78;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 2s ease-in;
+        }
+
+        .hidden-list {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .card:hover .hidden-list {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        .card {
+    position: relative;
+    background: #f9f9f9;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.border-red-500 {
+    border-color: #ef4444; /* Tailwind Red-500 */
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.8);
+}
+.border-green-500 {
+    border-color: green; /* Tailwind Red-500 */
+    box-shadow: 0 0 10px green;
+}
+.border-yellow-500 {
+    border-color: yellow; /* Tailwind Red-500 */
+    box-shadow: 0 0 10px yellow;
+}
+.border-blue-500 {
+    border-color: blue; /* Tailwind Red-500 */
+    box-shadow: 0 0 10px blue;
+}
+.certificate-item {
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    .certificate-item:hover {
+      color: #00ADB5;
+    }
+    .certificate-image {
+      display: none;
+      margin-top: 10px;
+      width: 100%;
+      max-width: 300px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: opacity 0.3s ease-in-out;
+      align-items: center;
+    }
+    .profile-img {
+      transition: transform 0.3s ease-in-out;
+    }
+    .profile-img:hover {
+      transform: scale(1.1) rotate(3deg);
+    }
+
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dust-particles">
+        <script>
+            for (let i = 0; i < 30; i++) {
+                let particle = document.createElement("div");
+                particle.classList.add("particle");
+                particle.style.left = Math.random() * 100 + "%";
+                particle.style.top = Math.random() * 100 + "%";
+                particle.style.animationDuration = Math.random() * 3 + 2 + "s";
+                document.querySelector(".dust-particles").appendChild(particle);
+            }
+        </script>
+    </div>
+    <div class="max-w-2xl mx-auto container fade-in">
+        <div class="flex items-center mb-6">
+            <div class="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 profile-img">
+                <img src="./dharani.jpg" alt="Profile picture placeholder" class="w-full h-full object-cover profile-img"/>
+            </div>
+            <div class="ml-4">
+                <h1 class="text-xl font-semibold">Dharani Karuppu</h1>
+                <p class="text-white-600"><i>"When you do something for someone else, don’t expect anything in return. That way, you will never be disappointed."</i></p>
+            </div>
+        </div>
+        
+        <div class="space-y-4">
+            <div class="border-l-4 border-green-500 p-4 rounded-lg card">
+                <h2 class="font-semibold">Experience</h2>
+                <div class="hidden-list">
+                    <p>2-year senior netball player</p>
+                </div>
+            </div>
+
+            <div class="border-l-4 border-yellow-500 p-4 rounded-lg card">
+                <h2 class="font-semibold">Skills</h2>
+                <div class="hidden-list">
+                    <p class="skill-item">C++</p>
+                    <p class="skill-item">Python</p>
+                    <p class="skill-item">Java</p>
+                    <p class="skill-item">PHP</p>
+                    <p class="skill-item">HTML</p>
+                    <p class="skill-item">CSS</p>
+                    <p class="skill-item">JavaScript</p>
+                    <p class="skill-item">Netball</p>
+                    <p class="skill-item">Basketball</p>
+                </div>
+            </div>
+            <div class="border-l-4 border-blue-500 p-4 rounded-lg card">
+                <h2 class="font-semibold">Certificates</h2>
+                <ul class="hidden-list text-sm">
+                    <li class="certificate-item" onmouseover="showCertificate('cert1')" onmouseout="hideCertificate()">🎓 Introduction to Agile Methodology</li>
+                    <li class="certificate-item" onmouseover="showCertificate('cert2')" onmouseout="hideCertificate()">🎓 Introduction to Cybersecurity</li>
+                    <li class="certificate-item" onmouseover="showCertificate('cert3')" onmouseout="hideCertificate()">🎓 Object-Oriented Programming in Python</li>
+                    <li class="certificate-item" onmouseover="showCertificate('cert4')" onmouseout="hideCertificate()">🎓 Threat Modelling</li>
+                    <li class="certificate-item" onmouseover="showCertificate('cert5')" onmouseout="hideCertificate()">🎓 Identity Governance and Administration</li>
+                </ul>
+                <img id="certificate-image" class="certificate-image" src="" alt="Certificate Preview">
+            </div>
+        </div>
+            <div class="border-l-4 border-red-500 p-4 rounded-lg card">
+                <h2 class="font-semibold">Contact Information</h2>
+                <div class="hidden-list">
+                    <li>📞 Phone :<a href="tel:+91  89407 77727" class="text-cyan-400 hover:text-red-400">+91 8940777727</a></li>
+                    <li>📷 Instagram:<a href="https://www.instagram.com/dharani_karuppu_1926/" class="text-cyan-400 hover:text-red-400">@dharani_karuppu_1926</a></li>
+                    <li>💻 Mail: <a href="mailto:dharanikaruppu3515@gmail.com" class="text-cyan-400 hover:text-red-400">dharanikaruppu3515@gmail.com</a></li>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        function showCertificate(cert) {
+          const image = document.getElementById("certificate-image");
+          const images = {
+            cert1: "./Introduction to agile methodology.png",
+            cert2: "./introductiontocybersecurity.png",
+            cert3: "./Basic of Python.png",
+            cert4: "./ThreatModelling.png",
+            cert5: "./IGA.png",
+          };
+          image.src = images[cert];
+          image.style.display = "block";
+        }
+    
+        function hideCertificate() {
+          document.getElementById("certificate-image").style.display = "none";
+        }
+      </script>
+</body>
+</html>
